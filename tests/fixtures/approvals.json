@@ -1,0 +1,43 @@
+{
+  "data": [
+    {
+      "belong_date": "2026-04-15",
+      "s_sn": "10000001",
+      "u_sn": "200001",
+      "is_deniable": true,
+      "qry_no": "C2604160001_round_1",
+      "correctioncount": "12",
+      "usr_name": "<a class=\"Link popoverx\" data-content=\"E002\">Alice Tester</a>",
+      "usr_name_str": "Alice Tester",
+      "date": "2026-04-15",
+      "section_typ": "上班",
+      "work_time": "2026-04-15 09:10:00",
+      "remark": "<a class=\"Link popoverx\" data-content=\"忘記打卡\">說明</a>",
+      "c_date": "<a class=\"Link popoverx\" data-content=\"Alice Tester\">2026-04-16<br>15:19:34</a>",
+      "audit_status": "0",
+      "dept_name": "Core Team",
+      "title_name": "Frontend Engineer",
+      "worktime": "09:00～18:00"
+    },
+    {
+      "belong_date": "2026-04-17",
+      "s_sn": "10000002",
+      "u_sn": "200002",
+      "is_deniable": true,
+      "qry_no": "C2604200001_round_1",
+      "correctioncount": "8",
+      "usr_name": "<a class=\"Link popoverx\" data-content=\"E003\">Bob Sample</a>",
+      "usr_name_str": "Bob Sample",
+      "date": "2026-04-17",
+      "section_typ": "下班",
+      "work_time": "2026-04-17 18:02:00",
+      "remark": "<a class=\"Link popoverx\" data-content=\"忘記打卡\">說明</a>",
+      "c_date": "<a class=\"Link popoverx\" data-content=\"Bob Sample\">2026-04-20<br>18:27:54</a>",
+      "audit_status": "0",
+      "dept_name": "Core Team",
+      "title_name": "Backend Engineer",
+      "worktime": "09:00～18:00"
+    }
+  ],
+  "awaiting_total": 15
+}

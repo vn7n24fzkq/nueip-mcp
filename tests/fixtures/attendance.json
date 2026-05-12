@@ -1,0 +1,59 @@
+{
+  "data": {
+    "2026-05-10": {
+      "100001": {
+        "user": { "u_sn": 100001, "u_no": "E001", "name": "Test User", "deptname": "Core Team" },
+        "dateInfo": { "date": "2026-05-10", "date_off": true, "daytype": "", "holiday": "" },
+        "attendance": null,
+        "worktime": "",
+        "punch": { "onPunch": [], "offPunch": [] }
+      }
+    },
+    "2026-05-01": {
+      "100001": {
+        "user": { "u_sn": 100001, "u_no": "E001", "name": "Test User", "deptname": "Core Team" },
+        "dateInfo": { "date": "2026-05-01", "date_off": true, "daytype": "國定假日", "holiday": "勞動節" },
+        "attendance": null,
+        "worktime": "",
+        "punch": { "onPunch": [], "offPunch": [] }
+      }
+    },
+    "2026-05-11": {
+      "100001": {
+        "user": { "u_sn": 100001, "u_no": "E001", "name": "Test User", "deptname": "Core Team" },
+        "dateInfo": { "date": "2026-05-11", "date_off": false, "daytype": "", "holiday": "" },
+        "attendance": {
+          "tag": "<span class=\"label label-danger\" data-original-title=\"234 分鐘\">遲到</span>",
+          "latemin": "234",
+          "leaveearlymin": "0",
+          "absentmin": "0"
+        },
+        "worktime": "09:00～18:00",
+        "punch": {
+          "onPunch": [
+            {
+              "s_sn": "10000003",
+              "section": "1",
+              "work_time": "2026-05-11 08:50:00",
+              "work_way": "5",
+              "address": "",
+              "remark": "忘記打卡",
+              "sign_status": "1"
+            },
+            {
+              "s_sn": "10000004",
+              "section": "1",
+              "work_time": "2026-05-11 15:24:18",
+              "work_way": "6",
+              "gps": "25.000000,121.500000",
+              "address": "Acme Test Co.",
+              "remark": "",
+              "sign_status": "0"
+            }
+          ],
+          "offPunch": []
+        }
+      }
+    }
+  }
+}
