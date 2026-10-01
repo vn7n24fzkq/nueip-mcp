@@ -3,6 +3,7 @@
 // punches only after an explicit button press. All rules live in plan.ts;
 // this file is I/O (Telegram, NUEiP, state file) plus the schedule loop.
 import { readFileSync, renameSync, writeFileSync } from "node:fs";
+import { setDefaultAutoSelectFamilyAttemptTimeout } from "node:net";
 import { join } from "node:path";
 import { loadConfig } from "./config.js";
 import { NueipClient } from "./client.js";
@@ -57,6 +58,10 @@ function save(): void {
 }
 
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
+
+// api.telegram.org is ~330ms TCP-connect away from Taiwan, past Node's 250ms
+// Happy Eyeballs per-attempt timeout → every fetch fails with ETIMEDOUT.
+setDefaultAutoSelectFamilyAttemptTimeout(1000);
 
 // ── Telegram ────────────────────────────────────────────────────────────
 
