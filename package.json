@@ -14,7 +14,7 @@
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx/esm --test tests/format.test.ts"
+    "test": "node --import tsx/esm --test tests/format.test.ts tests/plan.test.ts"
   },
   "engines": {
     "node": ">=20"
