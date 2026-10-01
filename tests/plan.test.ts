@@ -3,8 +3,13 @@ import assert from "node:assert/strict";
 import type { AttendanceDaySummary, LeaveRecordSummary } from "../src/format.ts";
 import {
   actualClockIn, allowed, alreadyPunched, clockInSlot, clockOutSlot,
-  dayOf, toMin, workSpan,
+  dayOf, taipei, toMin, workSpan,
 } from "../src/plan.ts";
+
+test("taipei(): UTC 00:48 on 9/28 is 08:48 on 9/28; UTC 16:30 rolls to next day", () => {
+  assert.deepEqual(taipei(Date.parse("2026-09-28T00:48:00Z")), { date: "2026-09-28", min: toMin("08:48") });
+  assert.deepEqual(taipei(Date.parse("2026-09-28T16:30:00Z")), { date: "2026-09-29", min: toMin("00:30") });
+});
 
 const MON = "2026-09-28", TUE = "2026-09-29", FRI = "2026-10-02", SAT = "2026-10-03";
 const lo = () => 0, hi = () => 0.999;

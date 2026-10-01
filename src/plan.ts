@@ -24,7 +24,13 @@ export const toMin = (hhmm: string): number => {
 export const fmt = (min: number): string =>
   `${String(Math.floor(min / 60)).padStart(2, "0")}:${String(min % 60).padStart(2, "0")}`;
 
-const randInt = (rand: () => number, lo: number, hi: number) =>
+// Taiwan wall clock from epoch ms, independent of the host TZ (no DST in Taiwan).
+export function taipei(ms: number): { date: string; min: number } {
+  const iso = new Date(ms + 8 * 3600_000).toISOString();
+  return { date: iso.slice(0, 10), min: toMin(iso.slice(11, 16)) };
+}
+
+const randInt =(rand: () => number, lo: number, hi: number) =>
   lo + Math.floor(rand() * (hi - lo + 1));
 
 // 0=Sun … 6=Sat, independent of the host timezone.

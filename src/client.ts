@@ -710,8 +710,8 @@ export type ApprovalType =
   | "expense"
   | "flextime";
 
+// NUEiP wants Taiwan wall-clock time. Don't use the host TZ: a UTC container
+// would stamp punches 8h off. Taiwan has no DST, so a fixed +8h is exact.
 function formatLocal(d: Date): string {
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ` +
-    `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  return new Date(d.getTime() + 8 * 3600_000).toISOString().replace("T", " ").slice(0, 19);
 }
