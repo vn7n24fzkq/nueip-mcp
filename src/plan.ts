@@ -13,7 +13,10 @@ const WORK_END = 18 * 60;
 const LUNCH_START = 12 * 60;
 const LUNCH_END = 13 * 60;
 const FULL_DAY = 9 * 60; // 8h work + 1h lunch
-const IN_WINDOW = { from: 8 * 60, to: 14 * 60 };
+// Clock-in must land near the span start (09:00, or when the morning leave
+// ends) — never an absolute window, which breaks for leave ending after it.
+const IN_EARLY = 15;
+const IN_LATE = 30;
 const OUT_LATEST = 21 * 60;
 const LEAVE_STATUSES = new Set(["已通過", "簽核中"]);
 
@@ -30,7 +33,7 @@ export function taipei(ms: number): { date: string; min: number } {
   return { date: iso.slice(0, 10), min: toMin(iso.slice(11, 16)) };
 }
 
-const randInt =(rand: () => number, lo: number, hi: number) =>
+const randInt = (rand: () => number, lo: number, hi: number) =>
   lo + Math.floor(rand() * (hi - lo + 1));
 
 // 0=Sun … 6=Sat, independent of the host timezone.
@@ -110,7 +113,7 @@ export function alreadyPunched(day: AttendanceDaySummary, kind: Kind): boolean {
 
 // Hard guard, checked right before every punch regardless of how we got there.
 export function allowed(kind: Kind, now: number, span: Span, actualIn: number | null): boolean {
-  if (kind === "in") return now >= IN_WINDOW.from && now <= IN_WINDOW.to;
+  if (kind === "in") return now >= span.start - IN_EARLY && now <= span.start + IN_LATE;
   if (actualIn === null) return false;
   return now >= earliestOut(span, actualIn) && now <= OUT_LATEST;
 }

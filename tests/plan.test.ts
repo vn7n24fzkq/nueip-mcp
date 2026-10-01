@@ -75,7 +75,13 @@ test("hard guard: rejects the 9/29 00:48 and 10/01 05:01 punches", () => {
   assert.equal(allowed("in", toMin("00:48"), span, null), false);
   assert.equal(allowed("in", toMin("05:01"), span, null), false);
   assert.equal(allowed("in", toMin("08:53"), span, null), true);
-  assert.equal(allowed("in", toMin("14:01"), span, null), false);
+  assert.equal(allowed("in", toMin("08:44"), span, null), false, "too early");
+  assert.equal(allowed("in", toMin("09:31"), span, null), false, "too late");
+
+  const leaveTo15 = workSpan(TUE, day(TUE), [leave(`${TUE} 09:00`, `${TUE} 15:00`)])!;
+  assert.equal(allowed("in", clockInSlot(leaveTo15, hi).at, leaveTo15, null), true,
+    "leave ending 15:00 → 14:48 clock-in must be allowed");
+  assert.equal(allowed("in", toMin("08:53"), leaveTo15, null), false, "but not at 08:53 that day");
 
   assert.equal(allowed("out", toMin("18:30"), span, null), false, "no clock-in → no clock-out");
   assert.equal(allowed("out", toMin("17:59"), span, toMin("08:50")), false);
